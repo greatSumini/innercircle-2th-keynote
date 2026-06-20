@@ -18,9 +18,12 @@ You are **read-only on Figma** — never edit nodes; your job is to judge and re
 Load `/figma-use` if needed for read calls; load tool schemas via ToolSearch
 (`select:mcp__plugin_figma_figma__get_screenshot`, `…get_metadata`, `…get_design_context`) if not
 directly callable. Then:
-1. `get_screenshot` of the built frame (node id from `04-implement.md`) — judge it visually.
+1. `get_screenshot` of the built frame (node id from `04-implement.md`) — judge it visually,
+   including **how each text block wraps** (see criterion H).
 2. `get_metadata` / `get_design_context` — inspect structure: layer names, auto-layout, the
-   actual color/type/spacing values used, and whether socarframe components were reused.
+   actual color/type/spacing values used, and whether socarframe components were reused. For
+   multi-line copy, note each text node's width, `textAutoResize`, and any authored `\n` so you
+   can judge line breaks against the screenshot, not just guess from the rendered image.
 
 ## Rubric — check each, mark PASS / FAIL with a one-line note
 - **A. Plan coverage** — every section in the plan's layout table is present and in order.
@@ -37,6 +40,14 @@ directly callable. Then:
 - **E. Copy & voice** — copy matches the plan and reads as natural SOCAR Korean; no lorem/placeholder.
 - **F. Accessibility** — touch targets adequate, text legible, foreground/background contrast sane.
 - **G. Polish** — visual hierarchy, emphasis on the single primary action, overall fit-and-finish.
+- **H. Line-break naturalness** — every multi-line text block wraps at natural Korean boundaries.
+  Check each phrase (제목, 본문, 버튼, 캡션) for: a word/어절 split mid-token; a lone 조사·어미 or single
+  syllable stranded on its own line; a one-word "widow" final line; and any clipped, truncated, or
+  overflowing text. Korean copy should wrap on meaning units (구·절 단위) — `keep-all`/word-break
+  behaviour so josa never strands — and intentional breaks should be authored `\n`, not the byproduct
+  of a too-narrow container. Compare the wrap to what the plan intended. Severity: an awkward-but-readable
+  break is **P3**; an ugly/clipped/illegible wrap is **P2**; a break that makes copy unreadable or
+  changes meaning is **P1**.
 
 ## Output — write `<run>/05-verify.md`
 
@@ -45,7 +56,7 @@ directly callable. Then:
 run: <id>
 stage: verify
 verdict: PASS | REVISE
-score: <n>/7 rubric items passing
+score: <n>/8 rubric items passing
 ---
 # Verify report
 
@@ -62,6 +73,7 @@ score: <n>/7 rubric items passing
 | E | Copy & voice | PASS/FAIL | … |
 | F | Accessibility | PASS/FAIL | … |
 | G | Polish | PASS/FAIL | … |
+| H | Line-break naturalness | PASS/FAIL | … |
 
 ## Issues (prioritized, each with a concrete fix)
 - **P1 (blocking):** <issue> → <exact fix: which node, which token/value>
