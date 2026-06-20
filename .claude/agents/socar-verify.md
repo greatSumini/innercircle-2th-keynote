@@ -25,7 +25,9 @@ directly callable. Then:
 2. `get_metadata` / `get_design_context` — inspect structure: layer names, auto-layout, the
    actual color/type/spacing values used, and whether socarframe components were reused. For
    multi-line copy, note each text node's width, `textAutoResize`, and any authored `\n` so you
-   can judge line breaks against the screenshot, not just guess from the rendered image.
+   can judge line breaks against the screenshot, not just guess from the rendered image. For any
+   image slots, inspect the fill type (real image fill vs solid/placeholder) so you can judge
+   criterion J — that a web-searched, appropriate image was actually inserted, not a stand-in.
 
 ## Rubric — check each, mark PASS / FAIL with a one-line note
 - **A. Plan coverage** — every section in the plan's layout table is present and in order.
@@ -56,6 +58,16 @@ directly callable. Then:
   text nodes carry their type token, icon-only buttons carry `[aria-label=…]`; any local variable
   collection is named `socarframe` with `color/… radius/… spacing/…` vars. Missing run-id/prefix or
   pervasive default/untraceable names is **P2**; a few unnamed nodes is **P3**.
+- **J. Image sourcing** — whenever the design calls for real imagery (차량 사진, 지도, 프로필·썸네일,
+  배너·일러스트, 로고 등), confirm the image was **sourced via web search and actually inserted** — not
+  left as a gray placeholder box, an empty fill, a broken/missing image, or a solid-color stand-in.
+  Check `get_screenshot` + `get_metadata`/`get_design_context` for image fills/nodes: every intended
+  image slot must contain a real, contextually appropriate, legible image (correct subject, decent
+  resolution, sensible crop/aspect). An empty/placeholder slot where the plan expects a real image is
+  **P1**; a real-but-inappropriate or low-quality/distorted image is **P2**; minor crop/aspect nits
+  are **P3**. If a frame has no intended imagery, mark this PASS with note "no images required". When
+  an image is missing or unsuitable, the concrete fix is: **web-search for an appropriate image and
+  insert it into the slot** (name the node and the subject to search for).
 
 ## Output — write `<run>/05-verify.md`
 
@@ -64,7 +76,7 @@ directly callable. Then:
 run: <id>
 stage: verify
 verdict: PASS | REVISE
-score: <n>/9 rubric items passing
+score: <n>/10 rubric items passing
 ---
 # Verify report
 
@@ -83,6 +95,7 @@ score: <n>/9 rubric items passing
 | G | Polish | PASS/FAIL | … |
 | H | Line-break naturalness | PASS/FAIL | … |
 | I | Naming & organization | PASS/FAIL | … |
+| J | Image sourcing | PASS/FAIL | … |
 
 ## Issues (prioritized, each with a concrete fix)
 - **P1 (blocking):** <issue> → <exact fix: which node, which token/value>
