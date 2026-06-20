@@ -15,6 +15,8 @@ existing work. You are **read-only on Figma** — never create or edit nodes her
   specific docs relevant to this request (e.g. `color.md`, `typography.md`, `spacing.md`,
   `components-actions.md`, `components-forms.md`, `components-feedback.md`,
   `components-surfaces.md`). Use Grep to find the right component sections.
+- `docs/figma-conventions.md` — the naming & placement rules. Recommend where the new frame(s) go
+  (empty space, one row, no overlap) in line with it, so implement can follow through.
 
 ## Figma inspection (read-only)
 Use the Figma MCP read tools against the target file (key in `00-request.md`). The Figma MCP

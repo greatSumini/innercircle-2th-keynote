@@ -31,6 +31,7 @@ user ──/auto "<design request>"──▶  auto (orchestrator skill, runs in 
 | `.claude/agents/socar-implement.md` | Build the design in Figma via the Figma MCP + figma skills. |
 | `.claude/agents/socar-verify.md` | Inspect the built frame in Figma; score it against plan + design system; list fixes. |
 | `docs/socarframe/` | The design-system knowledge base (the "style guide"). Read by every stage. |
+| `docs/figma-conventions.md` | Figma **naming & organization** conventions — frame/layer/component/variable names, multi-state frames, canvas placement. Read by plan, implement, verify. |
 | `runs/<run-id>/` | Per-run working directory; holds the numbered artifacts below. |
 | `tools/socarframe_scrape.py` | Re-syncs `docs/socarframe/` from socarframe.socar.kr (headless-Chrome scraper). |
 | `tests/` | Realistic design requests used to exercise the harness. |

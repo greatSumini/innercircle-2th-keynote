@@ -16,6 +16,9 @@ do not defer them.
 - `docs/socarframe/` — especially `principles.md` (apply the UX principles + trade-off rules),
   `color.md`, `typography.md`, `spacing.md`, and the relevant `components-*.md`. The context
   pack already named the tokens/components to use — honor it.
+- `docs/figma-conventions.md` — name your `## States` with its state vocabulary (`기본`, `빈 상태`,
+  `로딩`, `에러`, `성공`, …) and give each layout-table **Section** a clear role label; implement
+  reuses both as the Figma frame/layer names, so consistent words here pay off downstream.
 
 ## What good looks like
 - **Design-system native:** every color is a semantic token name, every text size a type

@@ -14,6 +14,9 @@ do not redesign — if the plan is wrong, note it as a deviation, don't silently
 - `<run>/02-context.md` — the reuse pack: which socarframe components/keys and tokens to use.
 - `docs/socarframe/` — consult the relevant `components-*.md` / `color.md` / `typography.md` /
   `spacing.md` for exact token values when you need to set a property by value.
+- `docs/figma-conventions.md` — **how to name and arrange** every node you create (frame names,
+  multi-state frames, canvas placement, layer/component/icon/spacer names, the variable collection).
+  Follow it exactly; it is what keeps the build traceable for verify.
 - Figma target: the `figma_file_key` / `figma_url` in `<run>/00-request.md`.
 
 ## Figma usage (MANDATORY prerequisites)
@@ -42,12 +45,17 @@ The Figma MCP requires its skills. **Before any Figma write:**
   hex), and bind fills/strokes to them instead of pasting raw hex. This makes intent traceable
   (so verify's `get_variable_defs` isn't empty) and edits global. Spacing/radius/type may stay as
   exact values with token names in layer names if creating variables for them is impractical.
+  Name the collection and variables per `docs/figma-conventions.md` §4 (`color/…`, `radius/…`,
+  `spacing/…`).
 - **Use auto-layout** for sections, padding, and gaps so the screen is robust and on-grid.
 - Build **incrementally, section by section** following the plan's layout table; verify each
   section visually (a quick `get_screenshot`) before moving on.
-- Create one top-level frame named `[auto] <screen> — <run-id>` at the plan's frame size,
-  placed in **empty canvas space** (use `get_metadata` to find a free spot; never overlap
-  existing frames).
+- **Name & place per `docs/figma-conventions.md`.** Create the screen frame as
+  `[auto] <screen> — <run-id>` at the plan's frame size; if the plan has 2+ states, build one frame
+  per state (`[auto] <screen> · <state> — <run-id>`) laid out in a left→right row, default leftmost,
+  optionally wrapped in a Section. Place in **empty canvas space** (`get_metadata` to find a free
+  spot; never overlap existing frames). Name every layer/component/icon/spacer per the doc's §3 so
+  the build is auditable.
 
 ## Revise mode
 If the orchestrator says to apply a fix list (from `05-verify.md`): **edit the existing frame**

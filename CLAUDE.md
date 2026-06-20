@@ -20,6 +20,7 @@ and a summary. To inspect or resume reasoning, read the artifacts in `runs/<id>/
 .claude/skills/auto/SKILL.md     # orchestrator (the /auto skill)
 .claude/agents/socar-*.md        # the 5 stage sub-agents
 docs/ARCHITECTURE.md             # the harness contract — read this to understand the flow
+docs/figma-conventions.md        # Figma naming & organization conventions (plan/implement/verify)
 docs/socarframe/                 # the design-system style guide (read by every stage)
   README.md                      #   index — start here
   color.md typography.md spacing.md icons.md principles.md
@@ -51,6 +52,11 @@ the orchestrator and are bounded (clarify ≤3 rounds, revise ≤2 cycles). See
   its token (`radius-350`=14px, `radius-300`=12px). Build Figma text in **Pretendard** (full weight
   set) unless the real SOCAR font is installed — never drop SemiBold(600) to Medium(500). The
   source of truth is `docs/socarframe/`.
+- **Name & organize Figma consistently.** Frames are `[auto] <screen> — <run-id>` (one per state,
+  `· <state>` when 2+), placed in empty space without overlap; layers/components/icons carry role +
+  token names so the build is traceable without a bound library. The source of truth is
+  `docs/figma-conventions.md`; plan names sections/states with it, implement applies it, verify
+  audits it.
 - **Mobile app screens.** SOCAR (쏘카) is a Korean car-sharing super-app; designs are mobile
   portrait unless stated otherwise. Copy is Korean, in SOCAR's clear/warm/concise voice.
 - **Default Figma target:** file key `VuBHVaAnA5ORacxMZ9zcH8`

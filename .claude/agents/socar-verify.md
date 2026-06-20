@@ -13,6 +13,8 @@ You are **read-only on Figma** — never edit nodes; your job is to judge and re
 - `<run>/03-plan.md` — the intended design (your rubric).
 - `<run>/04-implement.md` — what implement says it built (frame name, node id, link, deviations).
 - `docs/socarframe/` — the design system (token names/values, component specs, principles).
+- `docs/figma-conventions.md` — the naming & organization rules (frame/state names, placement,
+  layer/component/icon names, the `socarframe` variable collection). Audit the build against it.
 
 ## Inspect Figma (read-only)
 Load `/figma-use` if needed for read calls; load tool schemas via ToolSearch
@@ -48,6 +50,12 @@ directly callable. Then:
   of a too-narrow container. Compare the wrap to what the plan intended. Severity: an awkward-but-readable
   break is **P3**; an ugly/clipped/illegible wrap is **P2**; a break that makes copy unreadable or
   changes meaning is **P1**.
+- **I. Naming & organization** — the build follows `docs/figma-conventions.md`: frame named
+  `[auto] <screen> — <run-id>` (state segment when 2+ frames); frames placed in empty space without
+  overlap; layers/components/icons/spacers carry role + token names (not defaults like `Frame 12`),
+  text nodes carry their type token, icon-only buttons carry `[aria-label=…]`; any local variable
+  collection is named `socarframe` with `color/… radius/… spacing/…` vars. Missing run-id/prefix or
+  pervasive default/untraceable names is **P2**; a few unnamed nodes is **P3**.
 
 ## Output — write `<run>/05-verify.md`
 
@@ -56,7 +64,7 @@ directly callable. Then:
 run: <id>
 stage: verify
 verdict: PASS | REVISE
-score: <n>/8 rubric items passing
+score: <n>/9 rubric items passing
 ---
 # Verify report
 
@@ -74,6 +82,7 @@ score: <n>/8 rubric items passing
 | F | Accessibility | PASS/FAIL | … |
 | G | Polish | PASS/FAIL | … |
 | H | Line-break naturalness | PASS/FAIL | … |
+| I | Naming & organization | PASS/FAIL | … |
 
 ## Issues (prioritized, each with a concrete fix)
 - **P1 (blocking):** <issue> → <exact fix: which node, which token/value>
